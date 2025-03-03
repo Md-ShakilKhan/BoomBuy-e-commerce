@@ -1,4 +1,7 @@
 "use client";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { ShoppingBagOutlined as OrdersIcon } from "@mui/icons-material";
+import { ClerkLoaded, SignInButton, UserButton } from "@clerk/clerk-react";
 
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
@@ -49,8 +52,41 @@ function Header() {
           "
           />
         </Form>
+
+        <div>
+          <Link
+            href="/carts"
+            className="flex-1 relative flex justify-center items-center space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
+            <ShoppingCartOutlinedIcon className="w-6 h-6" />
+            <span className="font-medium text-center">My Cart</span>
+          </Link>
+          <ClerkLoaded>
+            {user && (
+              <Link
+                href="/orders"
+                className="flex-1 relative flex justify-center items-center space-x-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
+                <OrdersIcon className="w-6 h-6" />
+                <span className="font-medium text-center">My Orders</span>
+              </Link>
+            )}
+
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <UserButton />
+
+                <div className="hidden sm:block text-xs">
+                  <p className="text-gray-400">Welcome Back</p>
+                  <p className="font-bold">{user.fullName}!</p>
+                </div>
+              </div>
+            ) : (
+              <SignInButton mode="modal" />
+            )}
+          </ClerkLoaded>
+        </div>
       </div>
-      header
     </header>
   );
 }
