@@ -8,6 +8,7 @@ import { SignedIn, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import Form from "next/form";
+import Image from "next/image";
 
 function Header() {
   const { user } = useUser();
@@ -29,6 +30,13 @@ function Header() {
           href="/"
           className="text-2xl font-bold text-blue-500 hover:opacity-50 cursor-pointer mx-auto sm:mx-0"
         >
+          {/* <Image
+            src="../app/assets/BoomBuy-logo.webp"
+            alt="BoomBuy Logo"
+            width={200}
+            height={100}
+            priority
+          /> */}
           BoomBuy
         </Link>
 
