@@ -31,11 +31,8 @@ export default function RootLayout({
         <body>
           <main>
             <Header />
-            {/* className=
-            {`${geistSans.variable} ${geistMono.variable} antialiased`} */}
             {children}
           </main>
-
           <SanityLive />
         </body>
       </html>

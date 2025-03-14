@@ -8,7 +8,7 @@ function ProductThumb({ product }: { product: Product }) {
 
   return (
     <Link
-      href={`/products/${product.slug?.current}`}
+      href={`/product/${product.slug?.current}`}
       className={`group flex flex-col rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden bg-white ${isOutOfStock ? "opacity-50" : ""}`}
     >
       <div className="relative aspect-square w-full h-full overflow-hidden">
