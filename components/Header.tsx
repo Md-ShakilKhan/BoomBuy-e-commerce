@@ -101,19 +101,21 @@
 // }
 
 // export default Header;
-
 "use client";
 
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { ShoppingBagOutlined as OrdersIcon } from "@mui/icons-material";
 import { ClerkLoaded, SignInButton, UserButton } from "@clerk/clerk-react";
-
 import { SignedIn, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Form from "next/form";
+import useBasketStore from "@/app/(store)/store";
 
 function Header() {
   const { user } = useUser();
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+  );
 
   const createClerkPasskey = async () => {
     try {
@@ -157,10 +159,18 @@ function Header() {
           {/* Cart Button */}
           <Link
             href="/carts"
-            className="flex items-center bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg 
+            className="relative flex items-center bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg 
               hover:scale-105 transition-transform duration-300"
           >
-            <ShoppingCartOutlinedIcon className="w-5 h-5" />
+            <ShoppingCartOutlinedIcon className="w-6 h-6" />
+
+            {/* Cart Item Count (Always Visible) */}
+            {itemCount > 0 && (
+              <span className="absolute top-0 right-0 transform translate-x-1 -translate-y-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                {itemCount}
+              </span>
+            )}
+
             <span className="ml-2">My Cart</span>
           </Link>
 
@@ -171,7 +181,7 @@ function Header() {
               className="flex items-center bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg 
                 hover:scale-105 transition-transform duration-300"
             >
-              <OrdersIcon className="w-5 h-5" />
+              <OrdersIcon className="w-6 h-6" />
               <span className="ml-2">My Orders</span>
             </Link>
           </SignedIn>

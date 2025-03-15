@@ -37,7 +37,7 @@ function AddToBasketButton({ product, disabled }: AddToBasketButtonProps) {
   }
 
   return (
-    <div className="flex items-center justify-center space-x-3">
+    <div className="flex items-center justify-center space-x-3 mb-12">
       {/* Decrement Button */}
       <button
         onClick={handleRemoveItem}
