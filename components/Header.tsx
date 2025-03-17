@@ -158,7 +158,7 @@ function Header() {
         <div className="flex items-center gap-4">
           {/* Cart Button */}
           <Link
-            href="/carts"
+            href="/cart"
             className="relative flex items-center bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg 
               hover:scale-105 transition-transform duration-300"
           >

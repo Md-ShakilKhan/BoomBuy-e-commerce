@@ -1,16 +1,16 @@
 "use client";
 
-import useBasketStore from "@/app/(store)/store";
+import useCartStore from "@/app/(store)/store";
 import { Product } from "@/sanity.types";
 import { useEffect, useState } from "react";
 
-interface AddToBasketButtonProps {
+interface AddToCartButtonProps {
   product: Product;
   disabled: boolean;
 }
 
-function AddToBasketButton({ product, disabled }: AddToBasketButtonProps) {
-  const { addItem, removeItem, getItemCount } = useBasketStore();
+function AddToCartButton({ product, disabled }: AddToCartButtonProps) {
+  const { addItem, removeItem, getItemCount } = useCartStore();
 
   const [isClient, setIsClient] = useState(false);
   const [itemCount, setItemCount] = useState(0);
@@ -76,4 +76,4 @@ function AddToBasketButton({ product, disabled }: AddToBasketButtonProps) {
   );
 }
 
-export default AddToBasketButton;
+export default AddToCartButton;

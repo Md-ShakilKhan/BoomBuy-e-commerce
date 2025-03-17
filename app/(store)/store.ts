@@ -2,22 +2,22 @@ import { Product } from "@/sanity.types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export interface BasketItem {
+export interface CartItem {
     product: Product;
     quantity: number;
 }
 
-interface BasketState {
-    items: BasketItem[];
+interface CartState {
+    items: CartItem[];
     addItem: (product: Product) => void;
     removeItem: (productId: string) => void;
-    clearBasket: () => void;
+    clearCart: () => void;
     getTotalPrice: () => number;
     getItemCount: (productId: string) => number;
-    getGroupedItems: () => BasketItem[];
+    getGroupedItems: () => CartItem[];
 }
 
-const useBasketStore = create<BasketState>()(
+const useCartStore = create<CartState>()(
     persist(
         (set, get) => ({
             items: [],
@@ -51,9 +51,9 @@ const useBasketStore = create<BasketState>()(
                             acc.push(item);
                         }
                         return acc;
-                    }, [] as BasketItem[]),
+                    }, [] as CartItem[]),
                 })),
-            clearBasket: () => set({ items: [] }),
+            clearCart: () => set({ items: [] }),
 
             getTotalPrice: () => {
                 return get().items.reduce((total, item) => total + (item.product.price ?? 0) * item.quantity, 0);
@@ -66,9 +66,9 @@ const useBasketStore = create<BasketState>()(
 
         }),
         {
-            name: "basket-store",
+            name: "Cart-store",
         }
     )
 );
 
-export default useBasketStore;
+export default useCartStore;
