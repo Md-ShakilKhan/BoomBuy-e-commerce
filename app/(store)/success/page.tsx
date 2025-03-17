@@ -41,9 +41,9 @@ function SuccessPage() {
           <p className="text-lg text-gray-700 mb-4 text-center">
             Your order has been placed successfully and is being processed.
           </p>
-          <div className="space-y-2">
+          <div className="space-y-2 text-center flex flex-col items-center">
             {orderNumber && (
-              <p className="flex items-center space-x-5 text-gray-700 mb-4 text-center">
+              <p className="flex items-center space-x-5 text-gray-700 mb-4 ">
                 <span>Order Number:</span>
                 <span className="font-mono text-sm text-green-600">
                   {orderNumber}
