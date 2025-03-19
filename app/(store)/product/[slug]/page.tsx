@@ -5,9 +5,17 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-static";
+export const revalidate = 60;
+
 async function ProductPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
+
+  console.log(
+    crypto.randomUUID().slice(0, 5) +
+      `>>> Rerendered the product page caches for ${slug}`
+  );
 
   if (!product) {
     return notFound();

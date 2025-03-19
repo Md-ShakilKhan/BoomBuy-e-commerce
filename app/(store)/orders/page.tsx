@@ -55,9 +55,9 @@ async function Orders() {
                       <span className="text-sm mr-2">Status:</span>
                       <span
                         className={`px-3 py-1 rounded-full text-sm ${
-                          order.status === "paid"
+                          order.status === "Paid"
                             ? "bg-green-100 text-green-800"
-                            : "bg-green-100 text-gray-800"
+                            : "bg-gray-100 text-gray-800"
                         }`}
                       >
                         {order.status}
