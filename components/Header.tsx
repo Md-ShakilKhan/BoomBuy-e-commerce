@@ -117,15 +117,6 @@ function Header() {
     state.items.reduce((total, item) => total + item.quantity, 0)
   );
 
-  const createClerkPasskey = async () => {
-    try {
-      const response = await user?.createPasskey();
-      console.log(response);
-    } catch (err) {
-      console.error("Error:", JSON.stringify(err, null, 2));
-    }
-  };
-
   return (
     <header className="relative w-full bg-black shadow-lg">
       {/* Glowing Gradient Border */}
@@ -197,10 +188,9 @@ function Header() {
                 </div>
               </div>
             ) : (
-              <SignInButton
-                className="bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
-                mode="modal"
-              />
+              <div className="bg-yellow-500 text-black font-bold px-5 py-2 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                <SignInButton mode="modal" />
+              </div>
             )}
           </ClerkLoaded>
         </div>
